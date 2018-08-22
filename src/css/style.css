@@ -58,3 +58,7 @@ body {
 .image-poster {
   height: 300px;
 }
+
+.title {
+  font-weight: bold;
+}

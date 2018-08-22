@@ -74,11 +74,14 @@ const printMovies = (moviesToPrint) => {
 };
 
 const showModal = (movieData) => {
-  console.log(movieData);
-
   if (movieData.moviePoster === 'N/A') {
     movieData.moviePoster = `${'../src/assets/poster-placeholder.png'}`;
-  }
+  };
+
+  if (movieData.movieType === 'movie') {
+    movieData.movieType = 'Película';
+  };
+
   let modalArea = document.getElementById('exampleModal');
   modalArea.innerHTML = `<div class="modal-dialog" role="document">
   <div class="modal-content">
@@ -93,8 +96,10 @@ const showModal = (movieData) => {
         <img class= "image-poster mr-5" src="${movieData.moviePoster}" alt="${movieData.movieTitle}">
       </div>
       <div id="info-container">
-        <p>Año: ${movieData.movieYear}</p>
-        <p>Tipo: ${movieData.movieType}</p>
+        <p class="title">Año:</p>
+        <p>${movieData.movieYear}</p>
+        <p class="title">Tipo:</p>
+        <p>${movieData.movieType}</p>
       </div>
     </div>
     <div class="modal-footer">
@@ -108,16 +113,8 @@ const getDivForModal = (movieCard) => {
   let movieData = movieCard.dataset;
 
   movieCard.addEventListener('click', () => {
-    console.log(movieData.movieKey);
     showModal(movieData);
   });
 };
 
-// Function for the button in the first reach
-// const search = 'Wonder+Woman';
-// const btn = document.getElementById('get-data');
-
-// btn.addEventListener('click', (event) => {
-//   getMovies(apiKey, search);
-// });
 
