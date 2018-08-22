@@ -54,3 +54,7 @@ body {
 .movieCard img {
   height: 150px;
 }
+
+.image-poster {
+  height: 300px;
+}

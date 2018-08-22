@@ -62,20 +62,24 @@ const printMovies = (moviesToPrint) => {
     movieCard.dataset.movieTitle = movie.Title;
     movieCard.dataset.movieYear = movie.Year;
     movieCard.dataset.movieType = movie.Type;
+    movieCard.dataset.moviePoster = movie.Poster;
 
     movieTitle.innerHTML = movie.Title;
     movieInfo.appendChild(moviePoster);
     movieInfo.appendChild(movieTitle);
     movieCard.appendChild(movieInfo);
     movieList.appendChild(movieCard);
-
     getDivForModal(movieCard);
   });
 };
 
 const showModal = (movieData) => {
   console.log(movieData);
-  const modalArea = document.getElementById('exampleModal');
+
+  if (movieData.moviePoster === 'N/A') {
+    movieData.moviePoster = `${'../src/assets/poster-placeholder.png'}`;
+  }
+  let modalArea = document.getElementById('exampleModal');
   modalArea.innerHTML = `<div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
@@ -84,9 +88,14 @@ const showModal = (movieData) => {
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
-      <p>Año: ${movieData.movieYear}</p>
-      <p>Tipo: ${movieData.movieType}</p>
+      <div class="modal-body row m-3">
+      <div id="poster-container">
+        <img class= "image-poster mr-5" src="${movieData.moviePoster}" alt="${movieData.movieTitle}">
+      </div>
+      <div id="info-container">
+        <p>Año: ${movieData.movieYear}</p>
+        <p>Tipo: ${movieData.movieType}</p>
+      </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -96,8 +105,10 @@ const showModal = (movieData) => {
 };
 
 const getDivForModal = (movieCard) => {
-  movieData = movieCard.dataset;
+  let movieData = movieCard.dataset;
+
   movieCard.addEventListener('click', () => {
+    console.log(movieData.movieKey);
     showModal(movieData);
   });
 };
