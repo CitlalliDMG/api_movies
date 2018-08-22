@@ -1,0 +1,32 @@
+{
+  "name": "api_movies",
+  "version": "0.1.0",
+  "description": "Web app to search movies consuming OMDb api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CitlalliDMG/api_movies.git"
+  },
+  "keywords": [
+    "api",
+    "movies",
+    "fetch",
+    "web",
+    "app",
+    "firebase",
+    "login"
+  ],
+  "author": "Citlalli Del Moral",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CitlalliDMG/api_movies/issues"
+  },
+  "homepage": "https://github.com/CitlalliDMG/api_movies#readme",
+  "dependencies": {
+    "eslint": "^5.4.0",
+    "htmlhint": "^0.9.13"
+  }
+}
