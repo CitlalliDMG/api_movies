@@ -1,5 +1,5 @@
 window.getMovies = (api, search) => {
-  const url = `http://www.omdbapi.com/?apikey=${api}&s=${search}&type=movie`;
+  const url = `https://www.omdbapi.com/?apikey=${api}&s=${search}&type=movie`;
 
   fetch(url)
     .then(response => response.json())
