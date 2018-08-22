@@ -50,7 +50,7 @@ const printMovies = (moviesToPrint) => {
 
     movieCard.setAttribute('class', 'movieCard');
     if (movie.Poster === 'N/A') {
-      moviePoster.setAttribute('src', `${'../isrc/assets/poster-placeholder.png'}`);
+      moviePoster.setAttribute('src', `${'../src/assets/poster-placeholder.png'}`);
     } else {
       moviePoster.setAttribute('src', `${movie.Poster}`);
     }
