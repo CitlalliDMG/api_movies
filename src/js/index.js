@@ -40,8 +40,8 @@ for (let i = 0; i < buttons.length; i++) {
 
 // Function to print the movies on screen
 const printMovies = (moviesToPrint) => {
-  console.log(moviesToPrint);
   let movieList = document.getElementById('movies');
+
   moviesToPrint.forEach(movie => {
     let movieCard = document.createElement('div');
     let movieInfo = document.createElement('div');
@@ -49,30 +49,72 @@ const printMovies = (moviesToPrint) => {
     let moviePoster = document.createElement('img');
 
     movieCard.setAttribute('class', 'movieCard');
+    movieCard.setAttribute('data-toggle', 'modal');
+    movieCard.setAttribute('data-target', '#exampleModal');
+
     if (movie.Poster === 'N/A') {
       moviePoster.setAttribute('src', `${'../src/assets/poster-placeholder.png'}`);
     } else {
       moviePoster.setAttribute('src', `${movie.Poster}`);
     }
 
-
     movieCard.dataset.movieKey = movie.imdbID;
+    movieCard.dataset.movieTitle = movie.Title;
+    movieCard.dataset.movieYear = movie.Year;
+    movieCard.dataset.movieType = movie.Type;
+    movieCard.dataset.moviePoster = movie.Poster;
 
     movieTitle.innerHTML = movie.Title;
     movieInfo.appendChild(moviePoster);
     movieInfo.appendChild(movieTitle);
     movieCard.appendChild(movieInfo);
     movieList.appendChild(movieCard);
-
-    // console.log(movie.Title);
+    getDivForModal(movieCard);
   });
 };
 
-// Function for the button in the first reach
-// const search = 'Wonder+Woman';
-// const btn = document.getElementById('get-data');
+const showModal = (movieData) => {
+  if (movieData.moviePoster === 'N/A') {
+    movieData.moviePoster = `${'../src/assets/poster-placeholder.png'}`;
+  };
 
-// btn.addEventListener('click', (event) => {
-//   getMovies(apiKey, search);
-// });
+  if (movieData.movieType === 'movie') {
+    movieData.movieType = 'Película';
+  };
+
+  let modalArea = document.getElementById('exampleModal');
+  modalArea.innerHTML = `<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">${movieData.movieTitle}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+      <div class="modal-body row m-3">
+      <div id="poster-container">
+        <img class= "image-poster mr-5" src="${movieData.moviePoster}" alt="${movieData.movieTitle}">
+      </div>
+      <div id="info-container">
+        <p class="title">Año:</p>
+        <p>${movieData.movieYear}</p>
+        <p class="title">Tipo:</p>
+        <p>${movieData.movieType}</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div>
+</div>`;
+};
+
+const getDivForModal = (movieCard) => {
+  let movieData = movieCard.dataset;
+
+  movieCard.addEventListener('click', () => {
+    showModal(movieData);
+  });
+};
+
 
