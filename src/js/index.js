@@ -40,7 +40,6 @@ for (let i = 0; i < buttons.length; i++) {
 
 // Function to print the movies on screen
 const printMovies = (moviesToPrint) => {
-  console.log(moviesToPrint);
   let movieList = document.getElementById('movies');
 
   moviesToPrint.forEach(movie => {
@@ -50,14 +49,19 @@ const printMovies = (moviesToPrint) => {
     let moviePoster = document.createElement('img');
 
     movieCard.setAttribute('class', 'movieCard');
+    movieCard.setAttribute('data-toggle', 'modal');
+    movieCard.setAttribute('data-target', '#exampleModal');
+
     if (movie.Poster === 'N/A') {
       moviePoster.setAttribute('src', `${'../src/assets/poster-placeholder.png'}`);
     } else {
       moviePoster.setAttribute('src', `${movie.Poster}`);
     }
 
-
     movieCard.dataset.movieKey = movie.imdbID;
+    movieCard.dataset.movieTitle = movie.Title;
+    movieCard.dataset.movieYear = movie.Year;
+    movieCard.dataset.movieType = movie.Type;
 
     movieTitle.innerHTML = movie.Title;
     movieInfo.appendChild(moviePoster);
@@ -65,7 +69,36 @@ const printMovies = (moviesToPrint) => {
     movieCard.appendChild(movieInfo);
     movieList.appendChild(movieCard);
 
-    // console.log(movie.Title);
+    getDivForModal(movieCard);
+  });
+};
+
+const showModal = (movieData) => {
+  console.log(movieData);
+  const modalArea = document.getElementById('exampleModal');
+  modalArea.innerHTML = `<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">${movieData.movieTitle}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Año: ${movieData.movieYear}</p>
+      <p>Tipo: ${movieData.movieType}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div>
+</div>`;
+};
+
+const getDivForModal = (movieCard) => {
+  movieData = movieCard.dataset;
+  movieCard.addEventListener('click', () => {
+    showModal(movieData);
   });
 };
 
