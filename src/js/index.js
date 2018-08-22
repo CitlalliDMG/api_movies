@@ -14,15 +14,15 @@ const getId = () => {
 // Function convert the ID on the Search String
 const getEntry = (id) => {
   switch (id) {
-    case 'option-1':
-      search = 'Superman';
-      break;
-    case 'option-2':
-      search = 'Batman';
-      break;
-    case 'option-3':
-      search = 'Wonder+Woman';
-      break;
+  case 'option-1':
+    search = 'Superman';
+    break;
+  case 'option-2':
+    search = 'Batman';
+    break;
+  case 'option-3':
+    search = 'Wonder+Woman';
+    break;
   }
   return search;
 };
@@ -50,7 +50,7 @@ const printMovies = (moviesToPrint) => {
 
     movieCard.setAttribute('class', 'movieCard');
     if (movie.Poster === 'N/A') {
-      moviePoster.setAttribute('src', `${'../src/assets/poster-placeholder.png'}`);
+      moviePoster.setAttribute('src', `${'../isrc/assets/poster-placeholder.png'}`);
     } else {
       moviePoster.setAttribute('src', `${movie.Poster}`);
     }
