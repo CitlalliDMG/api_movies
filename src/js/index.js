@@ -42,6 +42,7 @@ for (let i = 0; i < buttons.length; i++) {
 const printMovies = (moviesToPrint) => {
   console.log(moviesToPrint);
   let movieList = document.getElementById('movies');
+
   moviesToPrint.forEach(movie => {
     let movieCard = document.createElement('div');
     let movieInfo = document.createElement('div');
